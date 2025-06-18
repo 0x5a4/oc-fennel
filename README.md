@@ -18,6 +18,8 @@ oppm install fennel
 
 This will install the `fennel` script you're used to and the fennel library. All of this combined will use about 300KB of disk space, so a tier 2 disk is propably recommended.
 
+As a last step, reboot your computer to install the fennel searcher automatically.
+
 ## Search Path
 
 The fennel searcher, allowing you to `require` fennel code is installed by default. No need to call `require("fennel").install()`!
