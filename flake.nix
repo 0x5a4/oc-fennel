@@ -50,7 +50,8 @@
             lua bootstrap/aot.lua src/fennel.fnl > $out/lib/fennel.lua
 
             # fennel bin
-            lua bootstrap/aot.lua src/launcher.fnl > $out/bin/fennel.lua
+            echo "local arg = ... or {}" > $out/bin/fennel.lua
+            lua bootstrap/aot.lua src/launcher.fnl >> $out/bin/fennel.lua
             sed -i '215,217 d' $out/bin/fennel.lua # delete the readline hint, it doesnt apply
           '';
 
