@@ -1,4 +1,4 @@
-local arg = ... or {}
+local arg = table.pack(...)
 local fennel = require("fennel")
 local _1_ = require("fennel.utils")
 local pack = _1_["pack"]
