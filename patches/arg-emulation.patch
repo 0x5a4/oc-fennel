@@ -1,0 +1,11 @@
+diff --git a/src/launcher.fnl b/src/launcher.fnl
+index 1ab2c38..89b9d7b 100644
+--- a/src/launcher.fnl
++++ b/src/launcher.fnl
+@@ -1,5 +1,6 @@
+ ;; This is the command-line entry point for Fennel.
+ 
++(local arg (table.pack ...))
+ (local fennel (require :fennel))
+ (local {: pack : unpack} (require :fennel.utils))
+ 

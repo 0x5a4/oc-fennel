@@ -217,13 +217,13 @@ local function repl()
   return fennel.repl(options)
 end
 local function eval(form)
-  local _23_
+  local _22_
   if (form == "-") then
-    _23_ = (io.stdin):read("*a")
+    _22_ = (io.stdin):read("*a")
   else
-    _23_ = form
+    _22_ = form
   end
-  return print(dosafely(fennel.eval, _23_, options))
+  return print(dosafely(fennel.eval, _22_, options))
 end
 local function compile(files)
   for _, filename in ipairs(files) do
@@ -235,17 +235,17 @@ local function compile(files)
       f = assert(io.open(filename, "rb"))
     end
     do
-      local _26_0, _27_0 = nil, nil
-      local function _28_()
+      local _25_0, _26_0 = nil, nil
+      local function _27_()
         return fennel["compile-string"](f:read("*a"), options)
       end
-      _26_0, _27_0 = xpcall(_28_, fennel.traceback)
-      if ((_26_0 == true) and (nil ~= _27_0)) then
-        local val = _27_0
+      _25_0, _26_0 = xpcall(_27_, fennel.traceback)
+      if ((_25_0 == true) and (nil ~= _26_0)) then
+        local val = _26_0
         print(val)
-      elseif (true and (nil ~= _27_0)) then
-        local _0 = _26_0
-        local msg = _27_0
+      elseif (true and (nil ~= _26_0)) then
+        local _0 = _25_0
+        local msg = _26_0
         do end (io.stderr):write((msg .. "\n"))
         os.exit(1)
       end
@@ -254,56 +254,56 @@ local function compile(files)
   end
   return nil
 end
-local _30_0 = arg
-local function _31_(...)
+local _29_0 = arg
+local function _30_(...)
   return (0 == #arg)
 end
-if ((_G.type(_30_0) == "table") and _31_(...)) then
+if ((_G.type(_29_0) == "table") and _30_(...)) then
   return repl()
-elseif ((_G.type(_30_0) == "table") and (_30_0[1] == "--repl")) then
+elseif ((_G.type(_29_0) == "table") and (_29_0[1] == "--repl")) then
   return repl()
-elseif ((_G.type(_30_0) == "table") and (_30_0[1] == "--compile")) then
-  local files = {select(2, (table.unpack or _G.unpack)(_30_0))}
+elseif ((_G.type(_29_0) == "table") and (_29_0[1] == "--compile")) then
+  local files = {select(2, (table.unpack or _G.unpack)(_29_0))}
   return compile(files)
-elseif ((_G.type(_30_0) == "table") and (_30_0[1] == "-c")) then
-  local files = {select(2, (table.unpack or _G.unpack)(_30_0))}
+elseif ((_G.type(_29_0) == "table") and (_29_0[1] == "-c")) then
+  local files = {select(2, (table.unpack or _G.unpack)(_29_0))}
   return compile(files)
-elseif ((_G.type(_30_0) == "table") and (_30_0[1] == "--compile-binary") and (nil ~= _30_0[2]) and (nil ~= _30_0[3]) and (nil ~= _30_0[4]) and (nil ~= _30_0[5])) then
-  local filename = _30_0[2]
-  local out = _30_0[3]
-  local static_lua = _30_0[4]
-  local lua_include_dir = _30_0[5]
-  local args = {select(6, (table.unpack or _G.unpack)(_30_0))}
+elseif ((_G.type(_29_0) == "table") and (_29_0[1] == "--compile-binary") and (nil ~= _29_0[2]) and (nil ~= _29_0[3]) and (nil ~= _29_0[4]) and (nil ~= _29_0[5])) then
+  local filename = _29_0[2]
+  local out = _29_0[3]
+  local static_lua = _29_0[4]
+  local lua_include_dir = _29_0[5]
+  local args = {select(6, (table.unpack or _G.unpack)(_29_0))}
   local bin = require("fennel.binary")
   options.filename = filename
   options.requireAsInclude = true
   return bin.compile(filename, out, static_lua, lua_include_dir, options, args)
-elseif ((_G.type(_30_0) == "table") and (_30_0[1] == "--compile-binary")) then
+elseif ((_G.type(_29_0) == "table") and (_29_0[1] == "--compile-binary")) then
   local cmd = (arg[0] or "fennel")
   return print((require("fennel.binary").help):format(cmd, cmd, cmd))
-elseif ((_G.type(_30_0) == "table") and (_30_0[1] == "--eval") and (nil ~= _30_0[2])) then
-  local form = _30_0[2]
+elseif ((_G.type(_29_0) == "table") and (_29_0[1] == "--eval") and (nil ~= _29_0[2])) then
+  local form = _29_0[2]
   return eval(form)
-elseif ((_G.type(_30_0) == "table") and (_30_0[1] == "-e") and (nil ~= _30_0[2])) then
-  local form = _30_0[2]
+elseif ((_G.type(_29_0) == "table") and (_29_0[1] == "-e") and (nil ~= _29_0[2])) then
+  local form = _29_0[2]
   return eval(form)
 else
-  local function _32_(...)
-    local a = _30_0[1]
+  local function _31_(...)
+    local a = _29_0[1]
     return ((a == "-v") or (a == "--version"))
   end
-  if (((_G.type(_30_0) == "table") and (nil ~= _30_0[1])) and _32_(...)) then
-    local a = _30_0[1]
+  if (((_G.type(_29_0) == "table") and (nil ~= _29_0[1])) and _31_(...)) then
+    local a = _29_0[1]
     return print(fennel["runtime-version"]())
-  elseif ((_G.type(_30_0) == "table") and (_30_0[1] == "--help")) then
+  elseif ((_G.type(_29_0) == "table") and (_29_0[1] == "--help")) then
     return print(help)
-  elseif ((_G.type(_30_0) == "table") and (_30_0[1] == "-h")) then
+  elseif ((_G.type(_29_0) == "table") and (_29_0[1] == "-h")) then
     return print(help)
-  elseif ((_G.type(_30_0) == "table") and (_30_0[1] == "-")) then
+  elseif ((_G.type(_29_0) == "table") and (_29_0[1] == "-")) then
     return dosafely(fennel.eval, (io.stdin):read("*a"))
-  elseif ((_G.type(_30_0) == "table") and (nil ~= _30_0[1])) then
-    local filename = _30_0[1]
-    local args = {select(2, (table.unpack or _G.unpack)(_30_0))}
+  elseif ((_G.type(_29_0) == "table") and (nil ~= _29_0[1])) then
+    local filename = _29_0[1]
+    local args = {select(2, (table.unpack or _G.unpack)(_29_0))}
     arg[-2] = arg[-1]
     arg[-1] = arg[0]
     arg[0] = table.remove(arg, 1)

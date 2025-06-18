@@ -1,0 +1,32 @@
+diff --git a/src/fennel/utils.fnl b/src/fennel/utils.fnl
+index 83cfa8f..70ca016 100644
+--- a/src/fennel/utils.fnl
++++ b/src/fennel/utils.fnl
+@@ -447,6 +447,25 @@ handlers will be skipped."
+  : len
+  : unpack : pack
+  :fennel-module nil
+- :path (table.concat [:./?.fnl :./?/init.fnl (getenv :FENNEL_PATH)] ";")
+- :macro-path (table.concat [:./?.fnl :./?/init-macros.fnl :./?/init.fnl
++ :path (table.concat [:/fnllib/?.fnl
++                      :/usr/fnllib/?.fnl
++                      :/home/fnllib/?.fnl
++                      :./?.fnl
++                      :/fnllib/?/init.fnl
++                      :/usr/fnllib/?/init.fnl
++                      :/home/fnllib/?/init.fnl
++                      :./?/init.fnl
++                      (getenv :FENNEL_PATH)] ";")
++ :macro-path (table.concat [:/fnllib/?.fnl
++                            :/usr/fnllib/?.fnl
++                            :/home/fnllib/?.fnl
++                            :./?.fnl
++                            :/fnllib/?/init-macros.fnl
++                            :/usr/fnllib/?/init-macros.fnl
++                            :/home/fnllib/?/init-macros.fnl
++                            :./?/init-macros.fnl
++                            :/fnllib/?/init.fnl
++                            :/usr/fnllib/?/init.fnl
++                            :/home/fnllib/?/init.fnl
++                            :./?/init.fnl
+                             (getenv :FENNEL_MACRO_PATH)] ";")}

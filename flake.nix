@@ -29,8 +29,14 @@
 
           buildInputs = [ pkgs.lua ];
 
+          patches = [
+            ./patches/search-path.patch
+            ./patches/arg-emulation.patch
+            ./patches/no-readline.patch
+          ];
+
           buildPhase = ''
-            mkdir -p $out/lib/fennel $out/bin
+            mkdir -p $out/lib/fennel $out/bin $out/boot
 
             make bootstrap/macros.lua bootstrap/match.lua bootstrap/view.lua
 
@@ -50,9 +56,10 @@
             lua bootstrap/aot.lua src/fennel.fnl > $out/lib/fennel.lua
 
             # fennel bin
-            echo "local arg = table.pack(...)" > $out/bin/fennel.lua
             lua bootstrap/aot.lua src/launcher.fnl >> $out/bin/fennel.lua
-            sed -i '215,217 d' $out/bin/fennel.lua # delete the readline hint, it doesnt apply
+
+            # fennel searcher init script
+            cp ${./99_fennel.lua} $out/boot/99_fennel.lua
           '';
 
           dontInstall = true;

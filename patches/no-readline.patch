@@ -1,0 +1,14 @@
+diff --git a/src/launcher.fnl b/src/launcher.fnl
+index 1ab2c38..7c5f1c5 100644
+--- a/src/launcher.fnl
++++ b/src/launcher.fnl
+@@ -213,9 +213,6 @@ If ~/.fennelrc exists, it will be loaded before launching a REPL.")
+     (set searcher-opts.useMetadata (not= false options.useMetadata))
+     (when (not= false options.fennelrc)
+       (set options.fennelrc load-initfile))
+-    (when (and (not readline?) (not= "dumb" (os.getenv "TERM")))
+-      (table.insert welcome (.. "Try installing readline via luarocks for a "
+-                                "better repl experience.")))
+     (set options.message (table.concat welcome "\n"))
+     (fennel.repl options)))
+ 
