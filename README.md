@@ -53,3 +53,23 @@ In the list below, `?` represents the module being required.
 - `/usr/fnllib/?/init.fnl`
 - `/home/fnllib/?/init.fnl`
 - `./?/init.fnl`
+
+## Writing programs in fennel
+
+The default OpenOS Shell can only run lua programs, so we have to get our fennel to be called from lua. There are 2 ways to do this. Either compiling your script to lua, or creating a small wrapper that forwards the call.
+
+Lets suppose we want to write a program `hello` in fennel.
+
+### Wrapper
+
+First copy your `hello.fnl` to `/fnlbin/hello.fnl`. Technically the path doesn't matter, we'll just have to specify an absolute one later.
+
+Now create a file `/bin/hello.lua` and put the following line of code in there:
+
+```lua
+require("fennel").dofile("/fnlbin/hello.fnl", {}, ...)
+```
+
+### Compilation
+
+This is done the usual fennel way. Run `fennel --compile hello.fnl > /usr/bin/hello.lua`.
