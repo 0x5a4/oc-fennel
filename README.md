@@ -64,7 +64,7 @@ Lets suppose we want to write a program `hello` in fennel.
 
 First copy your `hello.fnl` to `/fnlbin/hello.fnl`. Technically the path doesn't matter, we'll just have to specify an absolute one later.
 
-Now create a file `/bin/hello.lua` and put the following line of code in there:
+Now create a file `/usr/bin/hello.lua` and put the following line of code in there:
 
 ```lua
 require("fennel").dofile("/fnlbin/hello.fnl", {}, ...)
